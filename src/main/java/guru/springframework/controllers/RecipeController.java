@@ -1,5 +1,6 @@
 package guru.springframework.controllers;
 
+import guru.springframework.domain.Recipe;
 import guru.springframework.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,8 @@ public class RecipeController {
 
     @GetMapping("show/{id}")
     public String showById(@PathVariable String id, Model model) {
-        model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
+        Recipe recipe = recipeService.findById(Long.valueOf(id));
+        model.addAttribute("recipe", recipe);
 
         return "recipe/show";
     }

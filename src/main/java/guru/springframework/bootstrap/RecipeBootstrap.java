@@ -96,6 +96,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacamole.setDescription("Perfect Guacamole");
         guacamole.setPrepTime(10);
         guacamole.setCookTime(0);
+        guacamole.setServings(4);
+        guacamole.setSource("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         guacamole.setDifficulty(Difficulty.EASY);
         guacamole.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon." +
                 "\n" +
@@ -143,7 +145,9 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         tacos.setDescription("Spicy grilled chicken tacos");
         tacos.setCookTime(9);
         tacos.setPrepTime(20);
+        tacos.setServings(6);
         tacos.setDifficulty(Difficulty.MODERATE);
+        tacos.setSource("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacos.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat." +
                 "\n" +
                 "2 Make the marinade and coat the chicken: In a large bowl, stir together the chili powder, oregano, cumin, sugar, salt, garlic and orange zest. Stir in the orange juice and olive oil to make a loose paste. Add the chicken to the bowl and toss to coat all over.\n" +
