@@ -22,10 +22,11 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public Set<Recipe> getRecipes() {
         log.debug("=====> I'm in the service");
-        //  Set<Recipe> recipeSet = new HashSet<>();
-        // recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
-        // return recipeSet;
-
         return StreamSupport.stream(recipeRepository.findAll().spliterator(), false).collect(Collectors.toSet());
+    }
+
+    @Override
+    public Recipe findById(Long id) {
+        return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
     }
 }
