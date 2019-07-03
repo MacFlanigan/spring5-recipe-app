@@ -1,5 +1,6 @@
 package guru.springframework.services;
 
+import guru.springframework.constants.Constants;
 import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
@@ -59,5 +60,12 @@ public class RecipeServiceImplTest {
         Set<Recipe> recipes = recipeService.getRecipes();
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testDeleteById() {
+        recipeService.deleteById(Constants.ID);
+        // no when because void
+        verify(recipeRepository,times(1)).deleteById(anyLong());
     }
 }

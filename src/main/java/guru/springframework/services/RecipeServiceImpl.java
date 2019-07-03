@@ -29,12 +29,13 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Set<Recipe> getRecipes() {
-        log.debug("=====> I'm in the service");
+        log.debug("=====> getRecipes()");
         return StreamSupport.stream(recipeRepository.findAll().spliterator(), false).collect(Collectors.toSet());
     }
 
     @Override
     public Recipe findById(Long id) {
+        log.debug("=====> findById(), id: {}", id);
         return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Recipe not found"));
     }
 
@@ -42,8 +43,19 @@ public class RecipeServiceImpl implements RecipeService{
     @Transactional
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
         Recipe savedRecipe = recipeRepository.save(recipeCommandToRecipe.convert(command));
-        log.debug("Save recipe with id: {}", savedRecipe.getId());
+        log.debug("=====> saveRecipeCommand(), id: {}", savedRecipe.getId());
         return recipeToRecipeCommand.convert(savedRecipe);
     }
 
+    @Override
+    @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        return recipeToRecipeCommand.convert(findById(id));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        log.debug("=====> deleteById(), id: {}", id);
+        recipeRepository.deleteById(id);
+    }
 }
